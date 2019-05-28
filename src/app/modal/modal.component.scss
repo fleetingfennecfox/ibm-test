@@ -1,0 +1,36 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* z-index must be higher than .modal-background */
+    z-index: 3;
+    overflow: auto;
+
+    .modal-body {
+        padding: 20px;
+        background: #fff;
+        margin-top: 25%;
+        margin-bottom: 5rem;
+        margin-right: 5rem;
+        margin-left: 5rem;
+    }
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.75;
+    /* z-index must be below .modal but above everything else  */
+    z-index: 2;
+}
+
+body.modal-open {
+    /* hide main scrollbar when modal window is open */
+    overflow: hidden;
+}

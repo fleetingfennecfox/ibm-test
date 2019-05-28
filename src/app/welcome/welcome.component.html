@@ -1,0 +1,83 @@
+<button *ngIf="loggedIn" class="logout-btn" (click)="logout()">{{ logoutMsg }}</button>
+
+<div *ngIf="!loggedIn">
+
+  <div class="center">
+    <h1 class="welcome">{{ siteHeader }}</h1>
+    <div class="w-100">
+
+      <button
+       [@showBtn]="showSignUp"
+       class="signup-login"
+       (mouseenter)="showLogin = false"
+       (mouseleave)="showLogin = true"
+       (click)="signUp();">
+       {{ signUpText }}
+      </button>
+
+      <button
+       [@showBtn]="showLogin"
+       class="signup-login"
+       (mouseenter)="showSignUp = false"
+       (mouseleave)="showSignUp = true"
+       (click)="login()">
+        {{ loginText }}
+      </button>
+
+    </div>
+  </div>
+
+  <div class="flex w-100">
+    <form #signUpForm class="sign-up-fields" (ngSubmit)="submitSignUp()">
+      <input
+       [formControl]="signUpUser"
+       class="user-pass"
+       placeholder="Pick a Username"
+       [@signUpChosen]="signUpFields" />
+      <br>
+      <input
+       [formControl]="signUpPass"
+       class="user-pass"
+       type="password"
+       placeholder="Choose a Password"
+       [@signUpChosen]="signUpFields" />
+      <br>
+      <button
+       class="submit-btn"
+       [@signUpChosen]="signUpFields">
+        {{ signUpBtnMsg }}
+      </button>
+    </form>
+
+    <form #loginForm class="login-fields" (ngSubmit)="submitLogin()">
+      <input
+       [formControl]="loginUser"
+       class="user-pass"
+       placeholder="Your Username"
+       [@loginChosen]="loginFields" />
+      <br>
+      <input
+       [formControl]="loginPass"
+       class="user-pass"
+       type="password"
+       placeholder="Your Password"
+       [@loginChosen]="loginFields" />
+      <br>
+      <button
+       class="submit-btn"
+       [@loginChosen]="loginFields">
+        {{ loginBtnMsg }}
+      </button>
+    </form>
+
+  </div>
+
+  <span class="error-msg" *ngIf="!!errorMsg">{{ errorMsg }}</span>
+  
+</div>
+
+<app-modal id="cookies-modal">
+  <h1>{{ cookiesHeader }}</h1>
+  <p>{{ cookiesMsg }}</p>
+  <button (click)="closeModal('cookies-modal');">{{ cookiesBtnMsg }}</button>
+</app-modal>

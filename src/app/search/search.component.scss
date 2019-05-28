@@ -1,0 +1,98 @@
+.liked {
+    color: navy;
+}
+
+.disliked {
+    color: darkred;
+}
+
+.thumb-icon {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.keyword-input {
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 50%;
+    border-radius: 4px;
+    border-color: cornflowerblue;
+}
+
+.search-btn {
+    background-color: cadetblue;
+    color: white;
+    border-radius: 4px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 14px;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-width: thin;
+    border-color: darkgrey;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.cornflower { 
+    border-color: cornflowerblue;
+}
+
+.cadet {
+    border-color: cadetblue;
+}
+
+.results-div {
+    border-style: solid;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+}
+.results-div:hover {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.gold {
+    color: darkgoldenrod;
+}
+
+.no-mt {
+    margin-top: 0;
+}
+
+.helvetica {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.flex {
+    display: flex;
+}
+
+.modal-title {
+    border-style: solid;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: darkslategrey;
+    color: white;
+}

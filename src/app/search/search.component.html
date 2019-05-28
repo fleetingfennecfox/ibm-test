@@ -1,0 +1,59 @@
+<span class="flex justify-center red" *ngIf="!!errorMsg">{{ errorMsg }}</span>
+
+<form (submit)="searchRestaurants()">
+  <input [(ngModel)]="keyword" name="keyword" placeholder="optionally add a keyword e.g. pizza" class="keyword-input" />
+  <button class="search-btn">Find Restaurants</button>
+</form>
+
+<div *ngIf="!!restaurants">
+  <div
+   *ngFor="let restaurant of restaurants; let i = index;"
+   (click)="showDetails(restaurant)"
+   class="results-div"
+   [ngClass]="i % 2 === 0 ? 'cornflower' : 'cadet'">
+    <!-- added '?'' in case call fails or there are less than 20 results -->
+    <h3 class="no-mt">{{ restaurant?.name }}</h3>
+    <span class="flex" *ngIf="restaurant?.formatted_address">{{ restaurant?.formatted_address }}</span>
+    <span
+     class="flex"
+     *ngIf="restaurant?.rating && restaurant?.user_ratings_total">
+      <span class="bold gold">
+        {{ restaurant?.rating }}/5
+        &nbsp;
+      </span>
+      from {{ restaurant?.user_ratings_total }} Google reviews
+    </span>
+    <span class="flex" *ngIf="restaurant?.opening_hours" [ngClass]="restaurant?.opening_hours?.open_now ? 'green' : 'red'">{{ convertOpen(restaurant?.opening_hours?.open_now) }}</span>
+  </div>
+</div>
+
+<app-modal id="details-modal">
+  <div class="helvetica" *ngIf="singleRestaurant">
+    <h2 class="no-mt cadet modal-title">{{ singleRestaurant?.name }}</h2>
+    <span class="flex red" *ngIf="!!modalError">{{ modalError }}</span>
+    <span class="flex" *ngIf="singleRestaurant?.formatted_address">{{ singleRestaurant?.formatted_address }}</span>
+    <span class="flex" *ngIf="singleRestaurant?.result?.formatted_phone_number">{{ singleRestaurant?.result?.formatted_phone_number }}</span>
+    <span
+     class="flex"
+     *ngIf="singleRestaurant?.opening_hours"
+     [ngClass]="singleRestaurant?.opening_hours?.open_now ? 'green' : 'red'">
+      {{ convertOpen(singleRestaurant?.opening_hours?.open_now) }}
+    </span>
+    <span class="flex" *ngIf="singleRestaurant?.price_level">Price level {{ singleRestaurant?.price_level }}</span>
+    <span
+     class="flex"
+     *ngIf="singleRestaurant?.rating && singleRestaurant?.user_ratings_total">
+      <span class="bold gold">
+        {{ singleRestaurant?.rating }}/5
+        &nbsp;
+      </span>
+      from {{ singleRestaurant?.user_ratings_total }} Google reviews
+    </span>
+    <span class="flex" *ngIf="sentiment">The general sentiment for this restaurant is {{ sentiment }}</span>
+    <span class="flex" *ngIf="restaurantScore">Our user score: {{ restaurantScore }}</span>
+    <span>Been here?</span>
+    <i (click)="userRated(true)" [ngClass]="{ 'liked': userRating }" class="far fa-thumbs-up thumb-icon"></i>
+    <!-- Explicit false here so doesnt show when undefined -->
+    <i (click)="userRated(false)" [ngClass]="{ 'disliked': userRating === false }" class="far fa-thumbs-down thumb-icon"></i>
+  </div>
+</app-modal>
